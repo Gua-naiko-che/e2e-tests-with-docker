@@ -7,17 +7,19 @@ namespace tests
     using Xunit;
     public class UnitTest1
     {
-        [Fact(Skip = "just testing infra")]
+        [Fact]
         public void Test1()
         {
-            string driverDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            using (var driver = new ChromeDriver(driverDirectory))
-            {
-                driver.Navigate().GoToUrl("https://localhost:5001/");
-                By titleSelector = By.CssSelector("h1");
-                IWebElement title = driver.FindElement(titleSelector);
-                Assert.Equal("Welcome", title.Text);
-            }
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "chromedriver");
+            var options = new ChromeOptions();
+            options.AddArgument("--headless");
+            options.AddArgument("--no-sandbox");
+            using var driver = new ChromeDriver(service, options);
+
+            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Climate_apocalypse");
+            By titleSelector = By.CssSelector("#firstHeading");
+            IWebElement title = driver.FindElement(titleSelector);
+            Assert.Equal("Climate apocalypse", title.Text);
         }
     }
 }
