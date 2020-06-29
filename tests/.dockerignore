@@ -1,0 +1,8 @@
+# Build results
+**/node_modules
+**/bin
+**/obj
+
+#Docker
+Dockerfile
+.dockerignore

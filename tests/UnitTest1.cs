@@ -7,7 +7,7 @@ namespace tests
     using Xunit;
     public class UnitTest1
     {
-        [Fact]
+        [Fact(Skip = "just testing infra")]
         public void Test1()
         {
             string driverDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
