@@ -13,12 +13,11 @@ namespace tests
             string driverDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             using (var driver = new ChromeDriver(driverDirectory))
             {
-                driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Climate_apocalypse");
-                By titleSelector = By.CssSelector("#firstHeading");
+                driver.Navigate().GoToUrl("https://localhost:5001/");
+                By titleSelector = By.CssSelector("h1");
                 IWebElement title = driver.FindElement(titleSelector);
-                Assert.Equal("Climate apocalypse", title.Text);
+                Assert.Equal("Welcome", title.Text);
             }
-
         }
     }
 }
