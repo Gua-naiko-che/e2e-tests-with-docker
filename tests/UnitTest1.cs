@@ -16,10 +16,10 @@ namespace tests
             options.AddArgument("--no-sandbox");
             using var driver = new ChromeDriver(service, options);
 
-            driver.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Climate_apocalypse");
-            By titleSelector = By.CssSelector("#firstHeading");
+            driver.Navigate().GoToUrl("http://webapp:80");
+            By titleSelector = By.CssSelector("h1");
             IWebElement title = driver.FindElement(titleSelector);
-            Assert.Equal("Climate apocalypse", title.Text);
+            Assert.Equal("Welcome", title.Text);
         }
     }
 }
